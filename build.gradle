@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+task copyRuntimeLibs(type: Copy) {
+    from configurations.runtimeClasspath
+    into 'dependencies'
+}
+dependencies {
+    implementation('com.fasterxml.uuid:java-uuid-generator:4.0.1')
+    implementation('com.h2database:h2-mvstore:2.1.214')
+    implementation("com.zaxxer:HikariCP:5.0.1")
+    implementation('org.postgresql:postgresql:42.5.1')
+    implementation 'com.github.cliftonlabs:json-simple:4.0.1'
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
+    implementation 'org.apache.logging.log4j:log4j-api:2.19.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.19.0'
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("dev.failsafe:failsafe:3.3.0")
+    implementation("dev.failsafe:failsafe-okhttp:3.3.0")
+
+}
+
+test {
+    useJUnitPlatform()
+}
